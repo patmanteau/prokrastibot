@@ -15,8 +15,8 @@ def hello():
 	r = requests.post(configuration.bot_url, params=configuration.params, data=json.dumps(payload))
 	return 'SPAM'
 
-@app.route('/ping')
-def ping():
-	payload = { 'bot_id': configuration.bot_id,'text': "http://reddit.com/r/pics" }
-	r = requests.post(configuration.bot_url, params=configuration.params, data=json.dumps(payload))
-	return 'OK'
+#@app.route('/ping')
+#def ping():
+#	payload = { 'bot_id': configuration.bot_id,'text': "http://reddit.com/r/pics" }
+#	r = requests.post(configuration.bot_url, params=configuration.params, data=json.dumps(payload))
+#	return 'OK'
