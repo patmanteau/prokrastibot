@@ -1,6 +1,7 @@
 import requests
 import os
 import json
+import re
 from flask import Flask, request
 
 access_token = "6f657c8067e701314824028b45ba2ff5"
@@ -18,11 +19,15 @@ def hello():
 	#r = requests.post(bot_url, params=params, data=json.dumps(payload))
 	return 'OK'
 
-@app.route('/ping')
+@app.route('/ping', methods=['GET', 'POST'])
 def ping():
-	message = request.form
-	print(message)
+	message = request.get_json(force=True)
+	text = message['text']
+	name = message['name']
 
-	#payload = { 'bot_id': bot_id,'text': "http://reddit.com/r/pics" }
-	#r = requests.post(bot_url, params=params, data=json.dumps(payload))
+	if (re.search('prokrast', text, re.I)):
+		payload = { 'bot_id': bot_id,'text': '@{}: http://reddit.com/r/funny'.format(name) }
+		r = requests.post(bot_url, params=params, data=json.dumps(payload))
+		return '@{}: http://reddit.com/r/funny'.format(name)
+
 	return 'OK'
