@@ -30,6 +30,8 @@ def ping():
 		r = requests.post(bot_url, params=params, data=json.dumps(payload))
 		payload = { 'bot_id': bot_id,'text': 'komm, du willst es doch auch!!' }
 		r = requests.post(bot_url, params=params, data=json.dumps(payload))
-		return '@{}: http://reddit.com/r/funny'.format(name)
+	elif (re.search('kann[\w ]*nicht', text, re.I)):
+		payload = { 'bot_id': bot_id,'text': 'kann-nicht wohnt in der will-nicht-straße, {}'.format(name) }
+		r = requests.post(bot_url, params=params, data=json.dumps(payload))
 
 	return 'OK'
