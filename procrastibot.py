@@ -28,6 +28,8 @@ def ping():
 	if (re.search('prokrast', text, re.I)):
 		payload = { 'bot_id': bot_id,'text': '@{}: http://reddit.com/r/funny'.format(name) }
 		r = requests.post(bot_url, params=params, data=json.dumps(payload))
+		payload = { 'bot_id': bot_id,'text': 'komm, du willst es doch auch!!' }
+		r = requests.post(bot_url, params=params, data=json.dumps(payload))
 		return '@{}: http://reddit.com/r/funny'.format(name)
 
 	return 'OK'
