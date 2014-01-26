@@ -42,9 +42,9 @@ def ping():
 	if (re.search('prokrast', text, re.I)):
 		(title, url) = get_random_reddit_link()
 		payload = { 'bot_id': bot_id,'text': '{}'.format(url) }
-		#r = requests.post(bot_url, params=params, data=json.dumps(payload))
+		r = requests.post(bot_url, params=params, data=json.dumps(payload))
 		payload = { 'bot_id': bot_id,'text': '{}'.format(title) }
-		#r = requests.post(bot_url, params=params, data=json.dumps(payload))
+		r = requests.post(bot_url, params=params, data=json.dumps(payload))
 		#payload = { 'bot_id': bot_id,'text': 'komm, du willst es doch auch!!' }
 		#r = requests.post(bot_url, params=params, data=json.dumps(payload))
 		return '{} -- {}'.format(url, title) 
