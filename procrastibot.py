@@ -21,7 +21,11 @@ def get_random_reddit_link():
 	data = r.json()
 	i = random.randint(0, len(data['data']['children'])-1)
 	#return (data['data']['children'][i]['data']['title'] + " -- http://reddit.com" + data['data']['children'][i]['data']['permalink'])
-	return (data['data']['children'][i]['data']['title'] + " -- " + data['data']['children'][i]['data']['url'])
+	#return (data['data']['children'][i]['data']['title'] + " -- " + data['data']['children'][i]['data']['url'])
+	title = data['data']['children'][i]['data']['title']
+	url = data['data']['children'][i]['data']['url']
+
+	return (title, url)
 
 @app.route('/')
 def hello():
@@ -36,11 +40,14 @@ def ping():
 	name = message['name']
 
 	if (re.search('prokrast', text, re.I)):
-		payload = { 'bot_id': bot_id,'text': '{}'.format(get_random_reddit_link()) }
-		#return '{}'.format(get_random_reddit_link()) 
-		r = requests.post(bot_url, params=params, data=json.dumps(payload))
+		(title, url) = get_random_reddit_link()
+		payload = { 'bot_id': bot_id,'text': '{}'.format(url) }
+		#r = requests.post(bot_url, params=params, data=json.dumps(payload))
+		payload = { 'bot_id': bot_id,'text': '{}'.format(title) }
+		#r = requests.post(bot_url, params=params, data=json.dumps(payload))
 		#payload = { 'bot_id': bot_id,'text': 'komm, du willst es doch auch!!' }
 		#r = requests.post(bot_url, params=params, data=json.dumps(payload))
+		return '{} -- {}'.format(url, title) 
 	elif (re.search('kann[\w ]*nicht', text, re.I)):
 		payload = { 'bot_id': bot_id,'text': 'kann-nicht wohnt in der will-nicht-straße, {}'.format(name) }
 		#payload = { 'bot_id': bot_id,'text': 'kann-nicht wohnt in der will-nicht-straße, {}'.format(name) }
