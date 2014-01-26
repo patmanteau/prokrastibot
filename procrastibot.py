@@ -39,8 +39,8 @@ def ping():
 		payload = { 'bot_id': bot_id,'text': '{}'.format(get_random_reddit_link()) }
 		#return '{}'.format(get_random_reddit_link()) 
 		r = requests.post(bot_url, params=params, data=json.dumps(payload))
-		payload = { 'bot_id': bot_id,'text': 'komm, du willst es doch auch!!' }
-		r = requests.post(bot_url, params=params, data=json.dumps(payload))
+		#payload = { 'bot_id': bot_id,'text': 'komm, du willst es doch auch!!' }
+		#r = requests.post(bot_url, params=params, data=json.dumps(payload))
 	elif (re.search('kann[\w ]*nicht', text, re.I)):
 		payload = { 'bot_id': bot_id,'text': 'kann-nicht wohnt in der will-nicht-straße, {}'.format(name) }
 		#payload = { 'bot_id': bot_id,'text': 'kann-nicht wohnt in der will-nicht-straße, {}'.format(name) }
