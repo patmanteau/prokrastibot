@@ -1,8 +1,7 @@
-<<<<<<< HEAD
+config.py
+
 .DS_Store
-*.pyc
-__pycache__
-=======
+
 *.py[cod]
 
 # C extensions
@@ -39,4 +38,3 @@ nosetests.xml
 .mr.developer.cfg
 .project
 .pydevproject
->>>>>>> 08c4eba35f259c29e1aa858d75ca6430b9aefd95

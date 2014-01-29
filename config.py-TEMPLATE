@@ -1,0 +1,15 @@
+Configuration = {
+	'prod_config': {
+		'access_token': "d00faffe", # Group.me API key
+		'bot_id': "2727deadbeef", # Bot ID
+		'bot_url': "https://api.groupme.com/v3/bots/post" # do not change
+	},
+
+	'test_config': {
+		'access_token': "d00faffe",
+		'bot_id': "27262deadbeef",
+		'bot_url': "https://api.groupme.com/v3/bots/post"
+	}
+}
+
+config = Configuration['test_config']
