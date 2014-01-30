@@ -6,6 +6,7 @@ import json
 import re
 from flask import Flask, request
 import random
+import responder
 
 import config as c
 
@@ -23,28 +24,22 @@ def send_message(text):
 		app.logger.debug("send -> {}".format(text))
 	else:
 		app.logger.debug("send -> {}".format(text))
-		
-
-def get_random_reddit_link():
-	data = requests.get("http://www.reddit.com/r/funny/hot.json").json()
-
-	i = random.randint(0, len(data['data']['children'])-1)
-
-	title = data['data']['children'][i]['data']['title']
-	url = data['data']['children'][i]['data']['url']
-	return (title, url)
 
 def process(message):
 	sender = message['name']
 	text = message['text']
 	
-	if (re.search('prokrast', text, re.I)):
-		(title, url) = get_random_reddit_link()
-		send_message(url)
-		send_message(title)
+	resp = responder.RegexResponder()
+	for line in resp.answer(sender, text):
+		send_message(line)
+
+	# if (re.search('prokrast', text, re.I)):
+	# 	(title, url) = get_random_reddit_link()
+	# 	send_message(url)
+	# 	send_message(title)
 		
-	elif (re.search('kann[\w ]*nicht', text, re.I)):
-		send_message("kann-nicht wohnt in der will-nicht-straße, {}".format(name))
+	# elif (re.search('kann[\w ]*nicht', text, re.I)):
+	# 	send_message("kann-nicht wohnt in der will-nicht-straße, {}".format(name))
 	
 
 @app.route('/')
