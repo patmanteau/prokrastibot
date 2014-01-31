@@ -8,7 +8,7 @@ class Responder:
 
 class RegexResponder(Responder):
 	def get_random_reddit_link(self):
-		data = requests.get("http://www.reddit.com/r/funny/hot.json").json()
+		data = requests.get("http://www.reddit.com/r/funny/rising.json").json()
 
 		i = random.randint(0, len(data['data']['children'])-1)
 
