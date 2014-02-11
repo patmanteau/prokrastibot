@@ -189,6 +189,25 @@ def _help(name, text, groups):
 		"!meme <id>|text0|text1: Erzeugt das Meme <id> mit den angegebenen Texten. Die | sind mandatorisch, auch wenn nur text0 übergeben werden soll."
 	]
 
+def _y_u_no(name, text, groups):
+	meme_id = known_memes['y_u_no']
+	line1 = groups[0] if len(groups) > 0 else None
+	line2 = groups[1] if len(groups) > 1 else None
+
+	params = {
+		'template_id': meme_id,
+		'username': c.config['imgflip_username'],
+		'password': c.config['imgflip_password']
+	}
+	if line1:
+		params['text0'] = line1
+	if line2:
+		params['text1'] = line2
+
+	req = requests.post(c.config['imgflip_caption_image'], params=params).json()
+	if req['success']:
+		return req['data']['url']
+
 class Dispatcher:
 	def __init__(self):
 		self.registered = []
@@ -202,6 +221,9 @@ class Dispatcher:
 		self.register(Responder('^!meme (.+)\|(.+)\|(.*)',
 								re.I,
 								_meme))
+		self.register(Responder('^(y u no) (.+)',
+								re.I,
+								_y_u_no))
 		self.register(Responder('prokrast',
 								re.I,
 								_prokrast))
@@ -209,8 +231,6 @@ class Dispatcher:
 								re.I, 
 								lambda name, text, groups:
 									"kann-nicht wohnt in der will-nicht-straße, {}".format(name)))
-	
-
 
 	def register(self, responder):
 		self.registered.append(responder)
