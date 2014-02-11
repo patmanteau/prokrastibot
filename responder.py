@@ -42,7 +42,7 @@ def _prokrast(name, text, groups):
 
 	title = data['data']['children'][i]['data']['title']
 	url = data['data']['children'][i]['data']['url']
-	return (url, title)
+	return [url, title]
 
 known_memes = {
 	'overly_manly_man': '247756',
