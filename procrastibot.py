@@ -33,15 +33,6 @@ def process(message):
 	for line in resp.answer(sender, text):
 		send_message(line)
 
-	# if (re.search('prokrast', text, re.I)):
-	# 	(title, url) = get_random_reddit_link()
-	# 	send_message(url)
-	# 	send_message(title)
-		
-	# elif (re.search('kann[\w ]*nicht', text, re.I)):
-	# 	send_message("kann-nicht wohnt in der will-nicht-straße, {}".format(name))
-	
-
 @app.route('/')
 def hello():
 	return 'OK'

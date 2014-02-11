@@ -4,6 +4,10 @@
 
 *.py[cod]
 
+# project files
+*.sublime-project
+*.sublime-workspace
+
 # C extensions
 *.so
 
