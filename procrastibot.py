@@ -13,25 +13,25 @@ import config as c
 app = Flask(__name__)
 app.debug = True
 
-running_local=False
-
 def send_message(text):
 	params = {'token': c.config['access_token']}
 	
-	if (not running_local):
-		payload = {'bot_id': c.config['bot_id'], 'text': text}
-		r = requests.post(c.config['bot_url'], params=params, data=json.dumps(payload))
-		app.logger.debug("send -> {}".format(text))
-	else:
-		app.logger.debug("send -> {}".format(text))
+	payload = {'bot_id': c.config['bot_id'], 'text': text}
+	r = requests.post(c.config['bot_url'], params=params, data=json.dumps(payload))
+	app.logger.debug("send -> {}".format(text))
 
 def process(message):
 	sender = message['name']
 	text = message['text']
 	
-	resp = responder.RegexResponder()
-	for line in resp.answer(sender, text):
-		send_message(line)
+	resp = responder.Dispatcher()
+	answer = resp.answer(sender, text)
+
+	if type(answer) is list:
+		for line in answer:
+			send_message(line)
+	else:
+		send_message(answer)
 
 @app.route('/')
 def hello():
