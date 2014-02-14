@@ -26,7 +26,7 @@ Configuration = {
 	}
 }
 
-config = Configuration['test_config']
+config = Configuration['prod_config']
 
 
 known_memes = {
