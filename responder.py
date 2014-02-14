@@ -157,10 +157,12 @@ def _memelist(name, text, groups):
 	return "https://dl.dropboxusercontent.com/u/2530719/memelist.html"
 	
 def _meme(name, text, groups):
+	print("meme wanted: {} -- {} -- {}".format(name, text, groups))
 	meme_id = groups[0].strip().lower().replace(' ', '_') if len(groups) > 0 else None
 	line1 = groups[1] if len(groups) > 1 else None
 	line2 = groups[2] if len(groups) > 2 else None
-
+	print("doing meme: {} -- {} -- {}".format(meme_id, line1, line2))
+	
 	print(meme_id)
 	print(line1) 
 	print(line2)
