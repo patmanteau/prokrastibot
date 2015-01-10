@@ -58,7 +58,8 @@ def get_memes():
 def _prokrast(name, text, groups):
 	app.logger.debug("getting link")
 
-	data = requests.get("http://www.reddit.com/r/funny/rising.json").json()
+	headers = {'User-Agent': 'prokrastibot/1.0'}
+	data = requests.get("http://www.reddit.com/r/funny/rising.json", headers=headers).json()
 
 	i = random.randint(0, len(data['data']['children'])-1)
 
