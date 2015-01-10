@@ -9,7 +9,9 @@ Configuration = {
 		'imgflip_get_memes': 'https://api.imgflip.com/get_memes',
 		'imgflip_caption_image': 'https://api.imgflip.com/caption_image',
 		'imgflip_username': 'p7haas',
-		'imgflip_password': '5215846'
+		'imgflip_password': '5215846',
+		'box_api': 'https://api.box.com/2.0',
+		'box_token': '04G0wqkvMcZnF6lmOuvWyBx9ArSNPGyV'
 	},
 
 	'test_config': {
@@ -22,7 +24,9 @@ Configuration = {
 		'imgflip_get_memes': 'https://api.imgflip.com/get_memes',
 		'imgflip_caption_image': 'https://api.imgflip.com/caption_image',
 		'imgflip_username': 'p7haas',
-		'imgflip_password': '5215846'
+		'imgflip_password': '5215846',
+		'box_api': 'https://api.box.com/2.0',
+		'box_token': '04G0wqkvMcZnF6lmOuvWyBx9ArSNPGyV'
 	}
 }
 

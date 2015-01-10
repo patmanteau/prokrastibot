@@ -16,9 +16,7 @@ app.debug = True
 def send_message(text):
 	if text != None:
 		params = {'token': c.config['access_token']}
-		
 		app.logger.debug("sending: {}".format(text))
-
 		payload = {'bot_id': c.config['bot_id'], 'text': text}
 
 		app.logger.debug("payload: {}".format(payload))
@@ -26,8 +24,7 @@ def send_message(text):
 		r = requests.post(c.config['bot_url'], params=params, data=json.dumps(payload))
 	else:
 		app.logger.debug("nothing to send")
-
-
+		
 class Responder:
 	def __init__(self, regex, regex_options, func):
 		""" Construct a Responder that:
@@ -145,18 +142,28 @@ class Dispatcher:
 		self.register(Responder('^!help',
 								re.I,
 								_help))
+		
 		self.register(Responder('^!memelist',
 								re.I,
 								_memelist))
+		
 		self.register(Responder('^!meme (.+)\|(.+)\|(.*)',
 								re.I,
 								_meme))
+		
 		self.register(Responder('^(y u no) (.+)',
 								re.I,
 								_y_u_no))
+		
 		self.register(Responder('prokrast',
 								re.I,
 								_prokrast))
+		
+		self.register(Responder('awesome',
+								re.I,
+								lambda name, text, groups:
+									"http://ownyourawesome.files.wordpress.com/2012/09/awesome-meter.jpg"))
+		
 		self.register(Responder('kann[\w ]*nicht', 
 								re.I, 
 								lambda name, text, groups:

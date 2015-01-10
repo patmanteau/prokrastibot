@@ -1,4 +1,4 @@
 prokrastibot
 ============
 
-Ein sehr einfacher Group.me-Bot.
+Ein **sehr** einfacher [Group.me](https://groupme.com)-Bot.
