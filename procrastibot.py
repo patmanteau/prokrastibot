@@ -159,7 +159,7 @@ class Dispatcher:
 								re.I,
 								_prokrast))
 		
-		self.register(Responder('awesome',
+		self.register(Responder('^awesome',
 								re.I,
 								lambda name, text, groups:
 									"http://ownyourawesome.files.wordpress.com/2012/09/awesome-meter.jpg"))
