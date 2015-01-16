@@ -59,6 +59,7 @@ def _prokrast(name, text, groups):
 	app.logger.debug("getting link")
 
 	headers = {'User-Agent': 'prokrastibot/1.0'}
+	subreddit = "http://www.reddit.com/r/funny/rising.json" if random.randint(1, 10) > 1 else "http://www.reddit.com/r/Motivational/rising.json"
 	data = requests.get("http://www.reddit.com/r/funny/rising.json", headers=headers).json()
 
 	i = random.randint(0, len(data['data']['children'])-1)
