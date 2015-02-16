@@ -8,9 +8,6 @@ logger = logging.getLogger(__name__)
 from datetime import datetime
 
 class ImageAttachment():
-    url = ''
-    __type = ''
-
     def __init__(self, url):
         self.url = url
         self.__type = 'image'
@@ -19,11 +16,6 @@ class ImageAttachment():
         return {'type': self.__type, 'url': self.url}
 
 class LocationAttachment():
-    lng = ''
-    lat = ''
-    name = ''
-    __type = ''
-
     def __init__(self, lat, lng, name):
         self.lng = lng
         self.lat = lat
@@ -34,16 +26,17 @@ class LocationAttachment():
         return {'type': self.__type, 'lng': self.lng, 'lat': self.lat, 'name': self.name}
 
 class BotResponse():
-    bot_id = ""
-    text = ""
-    attachments = []
-
-    def __init__(self):
-        self.bot_id = c['bot_id']
-
     def __init__(self, msg):
         self.bot_id = c['bot_id']
-        self.text = msg
+        self.text = msg.get('text', '')
+        self.attachments = []
+
+        location = msg.get('location', None)
+        if location:
+            self.add_attachment(LocationAttachment(location['lat'], location['lng'], location['name']))
+        
+    def add_attachment(self, att):
+        self.attachments.append(att)
 
     def json(self):
         payload = {'bot_id': self.bot_id, 'text': self.text}
@@ -52,19 +45,13 @@ class BotResponse():
             payload['attachments'] = atts_as_dict
         return json.dumps(payload)
 
-    def add_text(self, text):
-        self.text = "".join(self.text, text)
-
-    def add_text_ln(self, text):
-        self.text = "\n".join(self.text, text)
-
     def empty(self):
-        return (self.text == "") and (self.attachments.count() == 0)
+        return (self.text == '') and (len(self.attachments) == 0)
 
     def __str__(self):
         return "{}: {}; attachments: {}".format(self.bot_id, self.text, self.attachments)
 
-class Request():
+class BotCallback():
     def __init__(self, jsn):
         self.__raw = jsn
         self.attachments = jsn.get('attachments', [])
@@ -82,11 +69,13 @@ class Request():
     def __str__(self):
         return "{}: {}".format(self.sender, self.text)
 
-def bot_send(bot_response):
-    if bot_response != None and not bot_response.empty():
+def bot_send(message):
+    """ Sends a bot message to groupme
+    """
+    if message != None and not message.empty():
         params = {'token': c['access_token']}
-        logger.debug("sending: {}".format(bot_response))
-        payload = bot_response.json()
+        logger.debug("sending: {}".format(message))
+        payload = message.json()
 
         logger.debug("payload: {}".format(payload))
     

@@ -15,8 +15,7 @@ import brain
 app = Flask(__name__)
 app.debug = True
 
-
-    
+  
 @app.route('/')
 def hello():
     app.logger.debug("default route hit")
@@ -24,7 +23,7 @@ def hello():
 
 @app.route('/ping', methods=['GET', 'POST'])
 def ping():
-    message = groupme.Request(request.get_json(force=True))
+    message = groupme.BotCallback(request.get_json(force=True))
     app.logger.debug("/ping received this: {}".format(str(message)))
 
     answers = [groupme.BotResponse(x) for x in brain.answer(message)]

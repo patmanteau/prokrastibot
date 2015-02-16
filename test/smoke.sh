@@ -10,6 +10,8 @@ function send_message {
 
 send_message "Johnny Five" "Test" "$HEADER" "$URL"
 send_message "Johnny Five" "kann ich nicht" "$HEADER" "$URL"
+send_message "Johnny Five" "wo ist die joseph schumpeter allee in bonn?" "$HEADER" "$URL"
+send_message "Johnny Five" "wo ist die l'osteria in bonn?" "$HEADER" "$URL"
 send_message "Johnny Five" "prokrastibot" "$HEADER" "$URL"
 send_message "Johnny Five" "!meme batman_slapping_robin|stop acting|like a chicken!" "$HEADER" "$URL"
 send_message "Johnny Five" "!memelist" "$HEADER" "$URL"

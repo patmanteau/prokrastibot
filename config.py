@@ -8,7 +8,8 @@ Configuration = {
 	'imgflip_caption_image': 'https://api.imgflip.com/caption_image',
 	'imgflip_username': os.getenv('PBOT_IMGFLIP_USER', ''),
 	'imgflip_password': os.getenv('PBOT_IMGFLIP_PASS', ''),
-	'env': os.getenv('PBOT_ENV', 'DEV')
+	'env': os.getenv('PBOT_ENV', 'DEV'),
+	'gmaps_url': 'https://maps.googleapis.com/maps/api/geocode/json',
 }
 
 config = Configuration
