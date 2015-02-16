@@ -1,37 +1,17 @@
-Configuration = {
-	'prod_config': {
-		'access_token': "6f657c8067e701314824028b45ba2ff5",
-		'bot_id': "999711d482b0075f6dea2b35e7",
-		'bot_url': "https://api.groupme.com/v3/bots/post",
-		'dropbox_key': '1dqiqqxhbb69i6a',
-		'dropbox_secret': '64cs9gbziabwfxo',
-		'dropbox_folder': '/prokrastibot',
-		'imgflip_get_memes': 'https://api.imgflip.com/get_memes',
-		'imgflip_caption_image': 'https://api.imgflip.com/caption_image',
-		'imgflip_username': 'p7haas',
-		'imgflip_password': '5215846',
-		'box_api': 'https://api.box.com/2.0',
-		'box_token': '04G0wqkvMcZnF6lmOuvWyBx9ArSNPGyV'
-	},
+import os
 
-	'test_config': {
-		'access_token': "6f657c8067e701314824028b45ba2ff5",
-		'bot_id': "36b67b11dccf4b33f3755db06c",
-		'bot_url': "https://api.groupme.com/v3/bots/post",
-		'dropbox_key': '1dqiqqxhbb69i6a',
-		'dropbox_secret': '64cs9gbziabwfxo',
-		'dropbox_folder': '/prokrastibot',
-		'imgflip_get_memes': 'https://api.imgflip.com/get_memes',
-		'imgflip_caption_image': 'https://api.imgflip.com/caption_image',
-		'imgflip_username': 'p7haas',
-		'imgflip_password': '5215846',
-		'box_api': 'https://api.box.com/2.0',
-		'box_token': '04G0wqkvMcZnF6lmOuvWyBx9ArSNPGyV'
-	}
+Configuration = {
+	'access_token': os.getenv('PBOT_ACCESS_TOKEN', ''),
+	'bot_id': os.getenv('PBOT_BOT_ID', ''),
+	'bot_url': "https://api.groupme.com/v3/bots/post",
+	'imgflip_get_memes': 'https://api.imgflip.com/get_memes',
+	'imgflip_caption_image': 'https://api.imgflip.com/caption_image',
+	'imgflip_username': os.getenv('PBOT_IMGFLIP_USER', ''),
+	'imgflip_password': os.getenv('PBOT_IMGFLIP_PASS', ''),
+	'env': os.getenv('PBOT_ENV', 'DEV')
 }
 
-config = Configuration['prod_config']
-
+config = Configuration
 
 known_memes = {
 	'overly_manly_man': '247756',
