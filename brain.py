@@ -148,3 +148,4 @@ def answer(message):
     for r in __registered:
         if r.matches(message):
             return r.respond_to(message)
+    return []

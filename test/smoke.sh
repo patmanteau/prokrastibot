@@ -8,6 +8,7 @@ function send_message {
 	curl -X POST -d "{\"name\": \"$1\", \"text\": \"$2\"}" -H "'$3'" "$4"
 }
 
+send_message "Johnny Five" "Test" "$HEADER" "$URL"
 send_message "Johnny Five" "kann ich nicht" "$HEADER" "$URL"
 send_message "Johnny Five" "prokrastibot" "$HEADER" "$URL"
 send_message "Johnny Five" "!meme batman_slapping_robin|stop acting|like a chicken!" "$HEADER" "$URL"

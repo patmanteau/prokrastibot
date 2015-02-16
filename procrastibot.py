@@ -27,7 +27,7 @@ def ping():
     message = groupme.Request(request.get_json(force=True))
     app.logger.debug("/ping received this: {}".format(str(message)))
 
-    answers = [groupme.BotResponse(x) for x in brain.answer(message) ]
+    answers = [groupme.BotResponse(x) for x in brain.answer(message)]
     
     for answer in answers:
         app.logger.debug("/ping will send that: {}".format(answer))
