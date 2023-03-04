@@ -1,4 +1,3 @@
-prokrastibot
-============
+# Prokrastibot II
 
-Ein **eher** einfacher [Group.me](https://groupme.com)-Bot.
+Now with Hamster sentience!

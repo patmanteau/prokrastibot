@@ -1,6 +1,3 @@
-envvars.sh
-pylint.out
-
 .DS_Store
 
 *.py[cod]
